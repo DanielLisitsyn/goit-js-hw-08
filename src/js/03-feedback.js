@@ -10,26 +10,36 @@ let objForm = {
 
 };
 
+
+
 function handleInput(event) {
-    
     objForm[event.target.name] = event.target.value;
-    localStorage.setItem("feedback-form-state", JSON.stringify(objForm))
+    localStorage.setItem("feedback-form-state", JSON.stringify(objForm));
 };
 
 const parsedData = JSON.parse(localStorage.getItem("feedback-form-state")) || '';
 if (parsedData) {
     inputEmail.value = parsedData.email || '';
     textAreaMessage.value = parsedData.message || '';
+    objForm = parsedData;
 };
-
 
 
 form.addEventListener('submit', submitForm);
 
 function submitForm(event) {
     event.preventDefault();
+    objForm = {};
     localStorage.removeItem("feedback-form-state");
-    console.log({ email: inputEmail.value, textAreaMessage: textAreaMessage.value });
-    form.reset();
-
+    if (inputEmail.value === '') {
+        
+    } else if
+        (textAreaMessage.value === '') {  
+        
+    } else {
+        console.log({ email: inputEmail.value, textAreaMessage: textAreaMessage.value });
+        form.reset();
+    }
+    return submitForm;
 };
+
